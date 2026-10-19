@@ -72,7 +72,7 @@ public class ChatCilentConfig {
                         
                                           official channels.
                         """)
-                //.defaultUser("How Can i help me....!!!!!!")
+                .defaultUser("How Can i help me....!!!!!!")
                 .build();
 
     }

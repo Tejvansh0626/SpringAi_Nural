@@ -1,15 +1,22 @@
 package com.aiessentials.messageroles.config;
 
+import com.aiessentials.messageroles.adviosrs.TokenUsageAuditAdvisor;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.List;
 
 @Configuration
 public class ChatCilentConfig {
     @Bean
     public ChatClient chatClient(ChatClient.Builder builder) {
-        return builder.defaultSystem("""
+        return builder
+                //.defaultAdvisors(new SimpleLoggerAdvisor())
+                .defaultAdvisors(List.of(new SimpleLoggerAdvisor(), new TokenUsageAuditAdvisor()))
+                .defaultSystem("""
                         You are a professional Banking Assistant for a bank.
                         
                                         Your responsibilities are to help customers

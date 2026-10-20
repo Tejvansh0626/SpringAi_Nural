@@ -1,5 +1,6 @@
 package com.aiessentials.messageroles.controller;
 
+import com.aiessentials.messageroles.adviosrs.TokenUsageAuditAdvisor;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ public class HrMessageAiController {
     @GetMapping("/hr")
     public String hrChat(@RequestParam("message") String message) {
         return chatClient.prompt()
+                //.advisors(new TokenUsageAuditAdvisor())
                 .system("""
                         You are a professional HR assistant
                         
